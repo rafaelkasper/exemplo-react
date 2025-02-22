@@ -1,50 +1,40 @@
-# React + TypeScript + Vite
+# Template React
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- Este template tem o objetivo de servir como uma estrutura inicial para projetos em React + Vite
 
-Currently, two official plugins are available:
+## Ambiente de desenvolvimento
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Node 20 ou superior - Instalar com a ferramenta [nvm-windows](https://github.com/coreybutler/nvm-windows)
+- [VSCode](https://code.visualstudio.com/download)
 
-## Expanding the ESLint configuration
+## Bibliotecas
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- [Axios](https://axios-http.com/ptbr/)
+- [React Query](https://tanstack.com/query/v5/docs/framework/react/overview)
+- [React router](https://reactrouter.com/)
+- [React Hook Form](https://www.react-hook-form.com/)
+- [Styled-components](https://styled-components.com/)
+- [React-Icons](https://react-icons.github.io/react-icons)
+- [date-fns](https://date-fns.org/docs/Getting-Started)
+- [jwt-decode](https://github.com/auth0/jwt-decode#documentation)
 
-- Configure the top-level `parserOptions` property like this:
+## Extensões VSCode
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+- [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+- [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+- [vscode-styled-components](https://marketplace.visualstudio.com/items?itemName=styled-components.vscode-styled-components)
+- [JSON to TS](https://marketplace.visualstudio.com/items?itemName=MariusAlchimavicius.json-to-ts)
+- [Git Graph](https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph)
+- [Git History](https://marketplace.visualstudio.com/items?itemName=donjayamanne.githistory)
+- [GitLens - Git supercharged](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens)
+- [Gitmoji](https://marketplace.visualstudio.com/items?itemName=seatonjiang.gitmoji-vscode)
+- [Vite](https://marketplace.visualstudio.com/items?itemName=antfu.vite)
+- [ES7+ React/Redux/React-Native snippets](https://marketplace.visualstudio.com/items?itemName=dsznajder.es7-react-js-snippets)
+- [Pretty TypeScriptErrors](https://marketplace.visualstudio.com/items?itemName=yoavbls.pretty-ts-errors)
+- [GitHub Copilot](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot)
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Sugestão de personalização p/ VSCode
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+- [FiraCode font - Professional Font for Developers](https://marketplace.visualstudio.com/items?itemName=SeyyedKhandon.firacode)
+- [GitHub Theme](https://marketplace.visualstudio.com/items?itemName=GitHub.github-vscode-theme)
+- [Material Icon Theme](https://marketplace.visualstudio.com/items?itemName=PKief.material-icon-theme)

@@ -1,9 +1,14 @@
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import App from "./App.tsx";
+import { createRoot } from 'react-dom/client';
 
-createRoot(document.getElementById("root")!).render(
-  <StrictMode>
+import { SettingsProvider } from '@/contexts';
+import { getItemLocalStorage } from '@/utils';
+
+import App from './App';
+
+const settings = getItemLocalStorage('settings');
+
+createRoot(document.getElementById('root')!).render(
+  <SettingsProvider settings={settings}>
     <App />
-  </StrictMode>
+  </SettingsProvider>
 );

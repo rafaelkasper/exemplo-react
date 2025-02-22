@@ -1,11 +1,15 @@
 import React from 'react';
 import { FiUsers } from 'react-icons/fi';
+
+import { useAuthentication } from '@/contexts';
+
+import { menu } from '../Navigation';
 import {
   NavbarContainer,
   MenuItems,
   MenuItem,
   ContentContainer,
-  Icon,
+  IconContainer,
 } from './styles';
 
 interface NavbarProps {
@@ -13,17 +17,34 @@ interface NavbarProps {
 }
 
 const TopNavbar: React.FC<NavbarProps> = ({ children }) => {
+  const { user, hasAccessPermission } = useAuthentication();
+
+  console.log(user);
+
   return (
     <>
       <NavbarContainer>
-        <Icon>
+        <IconContainer>
           <FiUsers />
-        </Icon>
+        </IconContainer>
         <MenuItems>
-          <MenuItem href="/home">Home</MenuItem>
-          <MenuItem href="/services">Services</MenuItem>
-          <MenuItem href="/about">About</MenuItem>
-          <MenuItem href="/contact">Contact</MenuItem>
+          {menu.map((item) => {
+            if (
+              !item.roles ||
+              (item.roles && /*user?.roles &&*/ hasAccessPermission(item.roles))
+            ) {
+              const Icon = item.icone;
+              return (
+                <MenuItem href={item.url} key={item.url}>
+                  <IconContainer>
+                    {Icon && <Icon />}
+                    {item.nome}
+                  </IconContainer>
+                </MenuItem>
+              );
+            }
+            return null;
+          })}
         </MenuItems>
       </NavbarContainer>
       <ContentContainer>{children}</ContentContainer>
