@@ -1,5 +1,8 @@
-export { formatCpfCnpj, removeCaracters } from "./formatCpfCnpj";
-export { getItemLocalStorage } from "./getItemLocalStorage";
-export { normalizeSearch } from "./normalizeSearch";
-export { numberToCurrency } from "./numberToCurrency";
-export { wait } from "./wait";
+export * from './formatCpfCnpj';
+export * from './getItemLocalStorage';
+export * from './normalizeSearch';
+export * from './numberToCurrency';
+export * from './wait';
+export * from './getVersion';
+export * from './jwt';
+export * from './numberToPercent';

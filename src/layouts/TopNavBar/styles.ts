@@ -15,10 +15,14 @@ export const NavbarContainer = styled.div`
   z-index: 1000;
 `;
 
-export const Icon = styled.div`
-  font-size: 3rem;
+export const IconContainer = styled.div`
+  font-size: 1rem;
   color: #fff;
   transition: color 0.3s ease;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
 `;
 
 export const MenuItems = styled.div`

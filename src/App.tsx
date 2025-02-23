@@ -1,24 +1,55 @@
+import { useCallback, useEffect } from 'react';
 import { BrowserRouter } from 'react-router';
-import Routes from './routes';
+
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ThemeProvider } from 'styled-components';
-import { themeLight } from './theme';
+
+import { runtimeConfigs } from '@/config';
+import { AppProvider } from '@/contexts';
+import { useSettings } from '@/hooks';
+
+import Routes from './routes';
 import { GlobalStyle } from './styles';
+import { themeLight } from './theme';
 
 function App() {
   const queryClient = new QueryClient();
+  const theme = themeLight; // TODO Fazer verificação de acordo com o tema escolhido
 
-  const theme = themeLight; // TODO Fazer verificaçãod e acordo com o tema escolhido
+  const { settings, saveSettings } = useSettings();
+
+  const searchEnviroment = useCallback(async () => {
+    const enviroment = await runtimeConfigs();
+
+    if (enviroment) {
+      saveSettings({
+        ...settings,
+        apiUrl: enviroment.API_URL || null,
+      });
+    }
+
+    return enviroment;
+  }, [settings, saveSettings]);
+
+  useEffect(() => {
+    const load = async () => {
+      await searchEnviroment();
+    };
+
+    load();
+  }, [searchEnviroment]);
 
   return (
-    <BrowserRouter>
+    <ThemeProvider theme={theme}>
       <QueryClientProvider client={queryClient}>
-        <ThemeProvider theme={theme}>
-          <GlobalStyle />
-          <Routes />
-        </ThemeProvider>
+        <BrowserRouter>
+          <AppProvider>
+            <GlobalStyle />
+            <Routes />
+          </AppProvider>
+        </BrowserRouter>
       </QueryClientProvider>
-    </BrowserRouter>
+    </ThemeProvider>
   );
 }
 

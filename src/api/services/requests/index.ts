@@ -1,5 +1,7 @@
 import axiosFiles from 'axios';
-import axios from './axios';
+import qs from 'qs';
+
+import axios from '../axios';
 
 const errorHandler = (error: any): string => {
   let message = '';
@@ -81,7 +83,10 @@ const getRequestWithParams = (
 ): Promise<any> =>
   axios
     .get(url, {
-      params: { ...params },
+      params,
+      paramsSerializer: (params) => {
+        return qs.stringify(params);
+      },
     })
     .then((response) => {
       const { data } = response;
