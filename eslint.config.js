@@ -21,6 +21,9 @@ export default tseslint.config(
           map: [['@', './src']],
           extensions: ['.js', '.jsx', '.ts', '.tsx'],
         },
+        typescript: {
+          project: './tsconfig.json',
+        },
       },
     },
     plugins: {
@@ -29,6 +32,7 @@ export default tseslint.config(
       'eslint-plugin-import': importPlugin,
       'import-helpers': importHelpers,
     },
+    parser: '@typescript-eslint/parser',
     rules: {
       'react-refresh/only-export-components': 'off',
       '@typescript-eslint/no-non-null-assertion': 'off',
