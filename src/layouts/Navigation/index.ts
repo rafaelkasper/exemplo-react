@@ -6,15 +6,16 @@ import { NivelAcesso } from '@/types';
 export interface MainMenuItem {
   nome: string;
   url: string;
-  roles: NivelAcesso[];
-  icone: IconType;
-  queryParams: string | null;
+  roles?: NivelAcesso[];
+  icone?: IconType;
+  queryParams?: string | null;
+  routes?: MainMenuItem[];
 }
 
 export const menu: MainMenuItem[] = [
   {
     nome: 'Home',
-    url: '/home',
+    url: '/',
     roles: ['administrador'],
     icone: FiHome,
     queryParams: null,
@@ -25,6 +26,13 @@ export const menu: MainMenuItem[] = [
     roles: ['administrador'],
     icone: FiUsers,
     queryParams: null,
+    routes: [
+      {
+        nome: 'Pagamentos',
+        url: '/pagamentos',
+        icone: FiHome,
+      },
+    ],
   },
   {
     nome: 'About',

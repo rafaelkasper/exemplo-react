@@ -20,26 +20,27 @@ export function AuthRoute({ children, requiredRoles }: ProtectedProps) {
     localStorage.getItem('accessToken') ||
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c';
 
-  useEffect(() => {
-    async function validateUser() {
-      const user = await getUser(accessToken);
+  async function validateUser() {
+    const user = await getUser(accessToken);
 
-      if (!user) {
-        return redirect('/login');
-      }
-
-      if (!requiredRoles) {
-        setIsAuthorized(true);
-        return;
-      }
-
-      if (/*user.roles &&*/ hasAccessPermission(requiredRoles)) {
-        setIsAuthorized(true);
-      } else {
-        setIsAuthorized(false);
-      }
+    if (!user) {
+      return redirect('/login');
     }
 
+    if (!requiredRoles) {
+      // Se a tela não precisar de permissão, então é autorizado
+      setIsAuthorized(true);
+      return;
+    }
+
+    if (/*user.roles &&*/ hasAccessPermission(requiredRoles)) {
+      // o certo é user.roles ao invés de requiredRoles
+      setIsAuthorized(true);
+    } else {
+      setIsAuthorized(false);
+    }
+  }
+  useEffect(() => {
     validateUser();
   }, [accessToken, getUser, hasAccessPermission, requiredRoles]);
 

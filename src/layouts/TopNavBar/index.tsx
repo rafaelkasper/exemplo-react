@@ -37,7 +37,7 @@ const TopNavbar: React.FC<NavbarProps> = ({ children }) => {
               return (
                 <MenuItem href={item.url} key={item.url}>
                   <IconContainer>
-                    <Icon />
+                    {Icon && <Icon />}
                     {item.nome}
                   </IconContainer>
                 </MenuItem>

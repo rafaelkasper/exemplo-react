@@ -24,6 +24,24 @@ const routesConfig = [
     component: lazy(() => import('../pages/Welcome')),
     guard: AuthRoute,
   },
+  {
+    path: '/services',
+    layout: TopNavBar,
+    component: lazy(() => import('../pages/Welcome')),
+    guard: AuthRoute,
+  },
+  {
+    path: '/about',
+    layout: TopNavBar,
+    component: lazy(() => import('../pages/Welcome')),
+    guard: AuthRoute,
+  },
+  {
+    path: '/contact',
+    layout: TopNavBar,
+    component: lazy(() => import('../pages/Welcome')),
+    guard: AuthRoute,
+  },
 ];
 
 const renderRoutes: FC<RenderRoutesProps> = ({ routes }) => {

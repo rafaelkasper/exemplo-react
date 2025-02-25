@@ -16,6 +16,7 @@ const WelcomeScreen = () => {
     refetch: refetchRepos,
   } = useGetReposGithub({ enabled: false });
 
+
   saveTodoAsync({ id: 123, content: 'abc' });
   console.log(data);
   refetchRepos();
@@ -23,6 +24,10 @@ const WelcomeScreen = () => {
   if (isLoading || isPendindSaveTodo) {
     console.log('carregando');
   }
+  
+  useEffect(() => {
+    console.log('data');
+  }, [data]); 
   */
 
   return (
