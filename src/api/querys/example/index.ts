@@ -1,11 +1,12 @@
-import { getReposGithub, RepositoryDTO } from '@/api/services/example';
-import { ErrorResponse } from '@/types';
 import {
   useQuery,
   UseQueryOptions,
   UseQueryResult,
 } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
+
+import { getReposGithub, RepositoryDTO } from '@/api/services/example';
+import { ErrorResponse } from '@/types';
 
 export const useGetReposGithub = (
   options?: Omit<

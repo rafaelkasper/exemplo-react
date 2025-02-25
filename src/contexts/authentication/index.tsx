@@ -231,6 +231,7 @@ export const AuthenticationProvider: React.FC<{
   const authenticated = useMemo(() => user !== null, [user]);
 
   const hasAccessPermission = (requiredRoles: NivelAcesso[]) => {
+    console.log(requiredRoles);
     // return requiredRoles.some((role) => user?.roles?.includes(role));
     return true;
   };

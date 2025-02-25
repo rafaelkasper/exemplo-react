@@ -19,6 +19,8 @@ interface NavbarProps {
 const TopNavbar: React.FC<NavbarProps> = ({ children }) => {
   const { user, hasAccessPermission } = useAuthentication();
 
+  console.log(user);
+
   return (
     <>
       <NavbarContainer>

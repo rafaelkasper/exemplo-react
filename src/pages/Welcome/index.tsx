@@ -1,7 +1,8 @@
-import { useGetReposGithub, useSaveTodo } from '@/api';
+// import { useGetReposGithub, useSaveTodo } from '@/api';
 import { Container, Subtitle, Title } from './styles';
 
 const WelcomeScreen = () => {
+  /*
   const { mutateAsync: saveTodoAsync, isPending: isPendindSaveTodo } =
     useSaveTodo({
       onError: (data) => {
@@ -22,6 +23,7 @@ const WelcomeScreen = () => {
   if (isLoading || isPendindSaveTodo) {
     console.log('carregando');
   }
+  */
 
   return (
     <Container>
