@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { stringify } from 'qs';
 
-import { loginErrorHandler } from '@/api';
 import { AccessTokenResponse } from '@/types';
 import { getItemLocalStorage } from '@/utils';
 
@@ -28,18 +27,10 @@ export const loginWithUserNameAndPassword = async (
     axios
       .post('/login', dataPost)
       .then((response) => {
-        if (response.data.success) {
-          resolve(response.data);
-        } else {
-          const { messages } = response.data;
-
-          reject(messages[0]);
-        }
+        resolve(response.data);
       })
       .catch((error) => {
-        const message = loginErrorHandler(error);
-
-        reject(message);
+        reject(error);
       });
   });
 };

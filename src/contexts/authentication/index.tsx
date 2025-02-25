@@ -15,7 +15,7 @@ import {
   loginWithUserNameAndPassword,
   logout,
   refreshAccessToken,
-} from '../../api/services/auth/authService';
+} from '../../api/services/auth';
 import {
   clear,
   getObject,

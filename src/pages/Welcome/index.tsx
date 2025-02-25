@@ -1,6 +1,5 @@
-import { useGetReposGithub } from '@/api/querys/example';
+import { useGetReposGithub, useSaveTodo } from '@/api';
 import { Container, Subtitle, Title } from './styles';
-import { useSaveTodo } from '@/api/mutations/example';
 
 const WelcomeScreen = () => {
   const { mutateAsync: saveTodoAsync, isPending: isPendindSaveTodo } =
