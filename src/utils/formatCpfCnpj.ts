@@ -1,7 +1,9 @@
+// Remove todos os caracteres não numéricos
 export const removeCaracters = (cpfcnpj: string) => {
   return cpfcnpj.replace(/\D/g, '');
 };
 
+// Formata um CPF ou CNPJ
 export const formatCpfCnpj = (cpfCnpj: string) => {
   cpfCnpj = removeCaracters(cpfCnpj);
 

@@ -1,5 +1,10 @@
 import { createGlobalStyle } from 'styled-components';
 
+// Define o estilo global da aplicação
+// Aqui são definidas as fontes, tamanhos, cores e demais estilos que serão aplicados
+// em toda a aplicação
+// O tema é passado como propriedade para que as cores sejam dinâmicas
+// de acordo com o tema escolhido
 export const GlobalStyle = createGlobalStyle`
   body {
     font-family: "Noto Sans", serif;

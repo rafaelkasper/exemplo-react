@@ -14,6 +14,8 @@ export interface RepositoryDTO {
   language: string;
 }
 
+// Exemplo da montagem de uma requisição axios que poderá ser consumida tanto por querys, mutations ou chamadas diretas
+
 export const getReposGithub = async (): Promise<RepositoryDTO> => {
   const response = await axiosInstance.get(
     `https://api.github.com/users/rafaelkasper/repos`

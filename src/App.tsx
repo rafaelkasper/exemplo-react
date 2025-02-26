@@ -16,6 +16,7 @@ function App() {
   const queryClient = new QueryClient();
   const theme = themeLight; // TODO Fazer verificação de acordo com o tema escolhido
 
+  // Faz a leitura das configurações que estão em public/static/config.json
   const { settings, saveSettings } = useSettings();
 
   const searchEnviroment = useCallback(async () => {
@@ -37,8 +38,10 @@ function App() {
     };
 
     load();
-  }, [searchEnviroment]);
+  }, []);
 
+  // Insere os contextos do tema, roteamento e demais que estão dentro de App/provider
+  // O Arquivo de Routes é o children dos providers
   return (
     <ThemeProvider theme={theme}>
       <QueryClientProvider client={queryClient}>

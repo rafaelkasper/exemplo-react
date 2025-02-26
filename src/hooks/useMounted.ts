@@ -1,5 +1,7 @@
 import { useCallback, useEffect, useRef } from 'react';
 
+// Hook para verificar se o componente está montado
+// Útil para evitar memory leaks
 export const useMounted = () => {
   const isMounted = useRef(false);
 

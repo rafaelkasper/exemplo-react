@@ -1,5 +1,6 @@
 import { softShadows, strongShadows } from './shadows';
 
+// Define um tema escuro
 export const themeDark = {
   name: 'dark',
   palette: {
@@ -35,6 +36,7 @@ export const themeDark = {
   shadows: strongShadows,
 };
 
+// Define um tema claro
 export const themeLight = {
   name: 'light',
   palette: {

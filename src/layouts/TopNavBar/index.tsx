@@ -21,6 +21,9 @@ const TopNavbar: React.FC<NavbarProps> = ({ children }) => {
 
   console.log(user);
 
+  // Componente de barra de navegação superior
+  // Renderiza o menu de navegação e o conteúdo da tela
+  // Verifica se o usuário tem permissão para acessar a tela
   return (
     <>
       <NavbarContainer>

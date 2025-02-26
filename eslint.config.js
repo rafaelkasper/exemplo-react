@@ -6,6 +6,9 @@ import tseslint from 'typescript-eslint';
 import importPlugin from 'eslint-plugin-import';
 import importHelpers from 'eslint-plugin-import-helpers';
 
+// Arquivo de configuração do ESLint
+// Define as regras de lint para o projeto
+// Padrão  formatação de código e boas práticas
 export default tseslint.config(
   { ignores: ['dist'] },
   {
@@ -28,6 +31,7 @@ export default tseslint.config(
       'eslint-plugin-import': importPlugin,
       'import-helpers': importHelpers,
     },
+    // Regras de lint
     rules: {
       'react-refresh/only-export-components': 'off',
       '@typescript-eslint/no-non-null-assertion': 'off',

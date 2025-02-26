@@ -1,6 +1,7 @@
 import { fromUnixTime, compareAsc } from 'date-fns';
 import { JwtPayload, jwtDecode } from 'jwt-decode';
 
+// Verifica se o token JWT está expirado
 export const isExpired = (jwtToken: string): boolean => {
   const decodedJwt = jwtDecode<JwtPayload>(jwtToken);
 

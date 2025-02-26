@@ -12,6 +12,7 @@ export interface MainMenuItem {
   routes?: MainMenuItem[];
 }
 
+// Array com os itens do menu principal da aplicação
 export const menu: MainMenuItem[] = [
   {
     nome: 'Home',

@@ -11,15 +11,19 @@ interface ProtectedProps {
   requiredRoles?: NivelAcesso[];
 }
 
-const UnauthorizedComponent = Unauthorized();
+const UnauthorizedComponent = Unauthorized(); // Instância componente de não autorizado
 
+// Componente de rota protegida
+// Verifica se o usuário está autenticado e se tem permissão para acessar a tela
 export function AuthRoute({ children, requiredRoles }: ProtectedProps) {
   const { getUser, hasAccessPermission } = useAuthentication();
   const [isAuthorized, setIsAuthorized] = useState<boolean | null>(null);
+  // Recupera o token de acesso do localStorage
   const accessToken =
     localStorage.getItem('accessToken') ||
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c';
 
+  // Função para validar se o usuário está autenticado e se tem permissão para acessar a tela
   async function validateUser() {
     const user = await getUser(accessToken);
 
@@ -40,10 +44,14 @@ export function AuthRoute({ children, requiredRoles }: ProtectedProps) {
       setIsAuthorized(false);
     }
   }
+
+  // Chama a função de validação do usuário ao montar o componente
   useEffect(() => {
     validateUser();
   }, [accessToken, getUser, hasAccessPermission, requiredRoles]);
 
+  // Se o usuário está logado e tem autorização, então renderiza o children
+  // Se está logado mas não tem autorização para a telas, renderiza o componente de não autorizado
   return (
     <>
       {isAuthorized === true && children}
