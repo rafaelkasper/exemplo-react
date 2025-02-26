@@ -1,3 +1,4 @@
+// Remove caracteres especiais e acentos de uma string
 export const normalizeSearch = (search: string) => {
   return search
     .normalize('NFD')

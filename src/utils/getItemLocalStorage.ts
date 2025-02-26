@@ -1,3 +1,4 @@
+// Recupera as configurações salvas em localStorage
 export const getItemLocalStorage = (item: string) => {
   let settings = null;
 

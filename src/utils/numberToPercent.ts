@@ -1,3 +1,4 @@
+// Formatar um número para porcentagem
 export function formatNumberToPercent(param: number | undefined) {
   if (!param) return '0%';
 

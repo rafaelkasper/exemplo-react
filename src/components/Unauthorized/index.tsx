@@ -1,5 +1,6 @@
 import { Container, Heading, Message } from './styles';
 
+// Componente simples para tela de não autorizado
 const Unauthorized = () => {
   return (
     <Container>

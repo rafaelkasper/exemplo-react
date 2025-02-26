@@ -8,6 +8,8 @@ import { AxiosError } from 'axios';
 import { getReposGithub, RepositoryDTO } from '@/api/services/example';
 import { ErrorResponse } from '@/types';
 
+// Arquivo com exemplo de query construída como hook para ser usada em diversos locais
+
 export const useGetReposGithub = (
   options?: Omit<
     UseQueryOptions<

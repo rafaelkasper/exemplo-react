@@ -1,3 +1,4 @@
+// Converte um número para uma string no formato de moeda
 export const numberToCurrency = (
   amount = 0,
   currency = 'BRL',

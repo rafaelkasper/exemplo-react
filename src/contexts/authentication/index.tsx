@@ -57,6 +57,8 @@ const AuthenticationContainer = createContext<UseAuthentication>(
   {} as UseAuthentication
 );
 
+// Hook para acessar o contexto de autenticação
+// Facilita a utilização do contexto em diversos locais
 export const useAuthentication = (): UseAuthentication =>
   useContext(AuthenticationContainer);
 
@@ -75,22 +77,26 @@ export const AuthenticationProvider: React.FC<{
       'Ocorreu um erro realizar o login, por favor tente novamente em alguns segundos.'
     );
 
+  // Função para recuperar o usuário do localStorage
+  async function getUserFromStorage() {
+    const userFromStorage = await getObject<SessionUser>(StorageKeyEnum.User);
+    setUser(userFromStorage || null);
+  }
+
+  // Função para verificar se o token de acesso expirou
+  async function verifyTokenExpiration() {
+    const accessToken = await getValue(StorageKeyEnum.AccessToken);
+
+    if (!accessToken) return;
+
+    const tokenExpired = Jwt.isExpired(accessToken);
+
+    if (tokenExpired) clearState();
+  }
+
+  // Função para inicializar o contexto de autenticação na renderização do componente
   useEffect(() => {
-    async function getUserFromStorage() {
-      const userFromStorage = await getObject<SessionUser>(StorageKeyEnum.User);
-      setUser(userFromStorage || null);
-    }
-
-    async function verifyTokenExpiration() {
-      const accessToken = await getValue(StorageKeyEnum.AccessToken);
-
-      if (!accessToken) return;
-
-      const tokenExpired = Jwt.isExpired(accessToken);
-
-      if (tokenExpired) clearState();
-    }
-
+    // Função para inicializar o contexto
     async function initContext() {
       setLoading(true);
 
@@ -102,21 +108,24 @@ export const AuthenticationProvider: React.FC<{
         setReady(true);
       }
     }
-
+    // Chama a função de inicialização do contexto que está dentro do useEffect
     initContext();
   }, []);
 
+  // Função para recuperar os dados do usuário a partir do token de acesso
   const getUser = (accessToken: string): SessionUser | undefined => {
     const decodedJwt = jwtDecode<AccessTokenPayload>(accessToken);
 
     if (!decodedJwt) return undefined;
 
+    // Exemplo de recuperação de dados do usuário a partir do token
     return {
       name: decodedJwt.name,
       email: decodedJwt.email,
     };
   };
 
+  // Função para tratar a resposta do token de acesso
   const handleTokenResponse = useCallback(
     async (response: AccessTokenResponse | undefined) => {
       if (!response) return false;
@@ -131,6 +140,7 @@ export const AuthenticationProvider: React.FC<{
     []
   );
 
+  // Função para realizar o login a partir do código de autorização
   const signIn = useCallback(
     async (code: string, codeVerifier?: string) => {
       setLoading(true);
@@ -150,6 +160,7 @@ export const AuthenticationProvider: React.FC<{
     [handleTokenResponse]
   );
 
+  // Função para realizar o login a partir do usuário e senha
   const signInAsync = useCallback(
     async (userName: string, password: string) => {
       try {
@@ -174,6 +185,7 @@ export const AuthenticationProvider: React.FC<{
     [error, signIn]
   );
 
+  // Função para renovar o token de acesso
   const refreshToken = useCallback(async () => {
     setLoading(true);
 
@@ -196,6 +208,7 @@ export const AuthenticationProvider: React.FC<{
     }
   }, [handleTokenResponse]);
 
+  // Função para salvar os dados do usuário no localStorage
   const saveState = async (
     newUser: SessionUser,
     accessToken: string,
@@ -207,6 +220,7 @@ export const AuthenticationProvider: React.FC<{
     setUser(newUser);
   };
 
+  // Função para limpar os dados do usuário do localStorage
   const clearState = () => {
     setUser(null);
     clear(StorageKeyEnum.User);
@@ -214,6 +228,7 @@ export const AuthenticationProvider: React.FC<{
     clear(StorageKeyEnum.AccessToken);
   };
 
+  // Função para realizar o logout
   const signOut = useCallback(async () => {
     try {
       const refreshTokenValue = await getValue(StorageKeyEnum.RefreshToken);
@@ -228,14 +243,17 @@ export const AuthenticationProvider: React.FC<{
     }
   }, [queryClient]);
 
+  // Função para verificar se o usuário está autenticado
   const authenticated = useMemo(() => user !== null, [user]);
 
+  // Função para verificar se o usuário tem permissão de acesso
   const hasAccessPermission = (requiredRoles: NivelAcesso[]) => {
     console.log(requiredRoles);
     // return requiredRoles.some((role) => user?.roles?.includes(role));
     return true;
   };
 
+  // Retorna o contexto de autenticação
   return (
     <AuthenticationContainer.Provider
       value={{

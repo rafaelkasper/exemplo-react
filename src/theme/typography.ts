@@ -1,3 +1,4 @@
+// Define configurações de tipografia
 export default {
   h1: {
     fontWeight: 500,

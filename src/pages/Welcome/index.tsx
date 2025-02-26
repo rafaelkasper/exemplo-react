@@ -30,6 +30,7 @@ const WelcomeScreen = () => {
   }, [data]); 
   */
 
+  // Componente de tela de boas-vindas
   return (
     <Container>
       <Title>Bem-vindo!</Title>
