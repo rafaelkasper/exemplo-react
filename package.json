@@ -7,7 +7,9 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "prepare": "husky install",
+    "format": "prettier --write '**/*.{js,jsx,ts,tsx,json,md,yml}'"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.66.9",
@@ -37,8 +39,15 @@
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.18",
     "globals": "^15.14.0",
+    "husky": "^8.0.0",
+    "prettier": "^3.5.2",
     "typescript": "~5.7.2",
     "typescript-eslint": "^8.22.0",
     "vite": "^6.1.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "yarn lint && yarn format"
+    }
   }
 }
