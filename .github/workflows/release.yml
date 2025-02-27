@@ -1,0 +1,32 @@
+name: Release
+
+on:
+  workflow_dispatch: # Permite executar manualmente pela interface do GitHub
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Passo 1: Checkout do repositório
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # Necessário para o semantic-release analisar todos os commits
+
+      # Passo 2: Configurar Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20.18.3' # Use a versão do Node.js que seu projeto precisa
+
+      # Passo 3: Instalar dependências
+      - name: Install dependencies
+        run: yarn install
+
+      # Passo 4: Rodar semantic-release
+      - name: Run semantic-release
+        run: npx semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Token de autenticação do GitHub
+

@@ -1,0 +1,89 @@
+{{#if compareUrl}}
+# [v{{nextRelease.version}}]({{compareUrl}}) ({{datetime "UTC:dd-mm-yyyy"}})
+{{else}}
+# v{{nextRelease.version}} ({{datetime "UTC:dd-mm-yyyy"}})
+{{/if}}
+
+{{#if breakingChanges}}
+## 💥 Mudanças que Quebram Compatibilidade
+{{#each breakingChanges}}
+- {{> commitTemplate}}
+{{/each}}
+{{/if}}
+
+{{#if newFeatures}}
+## ✨ Novas Funcionalidades
+{{#each newFeatures}}
+- {{> commitTemplate}}
+{{/each}}
+{{/if}}
+
+{{#if performanceImprovements}}
+## ⚡️ Melhorias de Performance
+{{#each performanceImprovements}}
+- {{> commitTemplate}}
+{{/each}}
+{{/if}}
+
+{{#if bugFixes}}
+## 🐛 Correções de Bugs
+{{#each bugFixes}}
+- {{> commitTemplate}}
+{{/each}}
+{{/if}}
+
+{{#if securityFixes}}
+## 🔒 Correções de Segurança
+{{#each securityFixes}}
+- {{> commitTemplate}}
+{{/each}}
+{{/if}}
+
+{{#if refactoring}}
+## ♻️ Refatorações
+{{#each refactoring}}
+- {{> commitTemplate}}
+{{/each}}
+{{/if}}
+
+{{#if dependencyUpdates}}
+## 📦 Atualizações de Dependências
+{{#each dependencyUpdates}}
+- {{> commitTemplate}}
+{{/each}}
+{{/if}}
+
+{{#if documentation}}
+## 📝 Documentação
+{{#each documentation}}
+- {{> commitTemplate}}
+{{/each}}
+{{/if}}
+
+{{#if ciCdChanges}}
+## 👷 Mudanças no CI/CD
+{{#each ciCdChanges}}
+- {{> commitTemplate}}
+{{/each}}
+{{/if}}
+
+{{#if internationalization}}
+## 🌐 Internacionalização
+{{#each internationalization}}
+- {{> commitTemplate}}
+{{/each}}
+{{/if}}
+
+{{#if accessibility}}
+## ♿ Melhorias de Acessibilidade
+{{#each accessibility}}
+- {{> commitTemplate}}
+{{/each}}
+{{/if}}
+
+{{#if otherChanges}}
+## 🛠️ Outras Alterações
+{{#each otherChanges}}
+- {{gitmoji}} {{> commitTemplate}}
+{{/each}}
+{{/if}}
