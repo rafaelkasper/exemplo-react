@@ -24,6 +24,10 @@ interface RenderRoutesProps {
 // O componente é o componente que será renderizado na rota
 const routesConfig = [
   {
+    path: '/login',
+    component: lazy(() => import('../pages/Login')),
+  },
+  {
     path: '/',
     layout: TopNavBar,
     component: lazy(() => import('../pages/Welcome')),

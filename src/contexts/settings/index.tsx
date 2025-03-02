@@ -7,6 +7,8 @@ interface ISettings {
 export interface SettingsContextValue {
   settings: ISettings;
   saveSettings: (update: ISettings) => void;
+  theme: string;
+  setTheme: (theme: 'light' | 'dark') => void;
 }
 
 interface SettingsProviderProps {
@@ -27,6 +29,8 @@ export const storeSettings = (settings: ISettings): void => {
 export const SettingsContext = createContext<SettingsContextValue>({
   settings: initialSettings,
   saveSettings: () => {},
+  theme: 'dark',
+  setTheme: () => {},
 });
 
 // Provedor de contexto para configurações
@@ -39,6 +43,8 @@ export const SettingsProvider: FC<SettingsProviderProps> = ({
     settings || initialSettings
   );
 
+  const [theme, setTheme] = useState('dark');
+
   // Salva as configurações no localStorage
   const saveSettings = (updatedSettings: ISettings): void => {
     setCurrentSettings(updatedSettings);
@@ -50,6 +56,8 @@ export const SettingsProvider: FC<SettingsProviderProps> = ({
     <SettingsContext.Provider
       value={{
         settings: currentSettings,
+        theme,
+        setTheme,
         saveSettings,
       }}
     >
